@@ -19,7 +19,12 @@ namespace TriviaGameLibrary
         public TriviaGameManager()
         {
             client = new HttpClient();
-            apiToken = GetAPITokenAsync().Result;
+        }
+
+        public async Task<TriviaGameManager> IntializeAsync()
+        {
+            apiToken = await GetAPITokenAsync();
+            return this;
         }
 
         public async Task<Dictionary<int, string>> GetCategoriesAsync()
